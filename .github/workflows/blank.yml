@@ -1164,8 +1164,10 @@
               the environmental revolution.
             </p>
             <!-- Replace "president-speech.mp3" with your actual file path -->
-            <audio controls src="president-speech.mp3">
-              Your browser does not support the audio element.
+            <audio controls preload="metadata">
+              <source src="president-speech.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element. You can
+              <a href="president-speech.mp3">download the audio file</a>.
             </audio>
             <p class="voice-desc" style="margin-top:0.3rem;">
               <strong>How it fits the theme:</strong> shows how national leaders
@@ -1183,8 +1185,10 @@
               Their story highlights youth activism as part of the revolution.
             </p>
             <!-- Replace with your own MP3 -->
-            <audio controls src="student-earthday.mp3">
-              Your browser does not support the audio element.
+            <audio controls preload="metadata">
+              <source src="student-earthday.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element. You can
+              <a href="student-earthday.mp3">download the audio file</a>.
             </audio>
             <p class="voice-desc" style="margin-top:0.3rem;">
               <strong>How it fits the theme:</strong> shows ordinary people
@@ -1203,8 +1207,10 @@
               benefits of reform.
             </p>
             <!-- Replace with your own MP3 -->
-            <audio controls src="river-resident.mp3">
-              Your browser does not support the audio element.
+            <audio controls preload="metadata">
+              <source src="river-resident.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element. You can
+              <a href="river-resident.mp3">download the audio file</a>.
             </audio>
             <p class="voice-desc" style="margin-top:0.3rem;">
               <strong>How it fits the theme:</strong> connects laws and
@@ -1223,8 +1229,10 @@
               clip represents the heart of the “reaction” stage.
             </p>
             <!-- Replace with your own MP3 -->
-            <audio controls src="industry-vs-environment.mp3">
-              Your browser does not support the audio element.
+            <audio controls preload="metadata">
+              <source src="industry-vs-environment.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element. You can
+              <a href="industry-vs-environment.mp3">download the audio file</a>.
             </audio>
             <p class="voice-desc" style="margin-top:0.3rem;">
               <strong>How it fits the theme:</strong> illustrates the clash of
