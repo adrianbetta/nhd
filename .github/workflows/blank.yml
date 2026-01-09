@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Environmental Reform Codex – NHD 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-alt: #050816;
+      --card: #111827;
+      --accent: #4ade80;
+      --accent-soft: rgba(74, 222, 128, 0.15);
+      --text: #f9fafb;
+      --muted: #d1d5ff; /* light enough to read on dark */
+      --border: #1f2937;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+      --mono: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: radial-gradient(circle at top, #111827 0, #020617 60%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--text);
+    }
+
+    p, li, span, small, em, strong {
+      color: var(--text);
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.25rem 1.25rem 3rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(2, 6, 23, 0.98),
+        rgba(2, 6, 23, 0.75),
+        transparent
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.5rem 1.25rem 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--mono);
+      letter-spacing: 0.06em;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .brand-mark {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #bbf7d0, #22c55e 40%, #16a34a);
+      box-shadow: 0 0 18px rgba(74, 222, 128, 0.9);
+    }
+
+    nav {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      transition: 0.18s ease;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    nav a:hover {
+      border-color: rgba(148, 163, 184, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    main {
+      margin-top: 1.5rem;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(
+        135deg,
+        rgba(74, 222, 128, 0.18),
+        rgba(15, 23, 42, 0.97)
+      );
+      border-radius: 1.75rem;
+      padding: 2rem 1.75rem 2.25rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at 80% 0,
+        rgba(56, 189, 248, 0.4),
+        transparent 55%
+      );
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.2fr);
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(74, 222, 128, 0.9);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 5vw, 2.8rem);
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      max-width: 32rem;
+      font-size: 0.98rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+
+    .badge {
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.78rem;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      background: rgba(2, 6, 23, 0.95);
+      border-radius: 1.4rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+    }
+
+    .hero-right-title {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .codex-list {
+      display: grid;
+      gap: 0.55rem;
+      font-size: 0.85rem;
+    }
+
+    .codex-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.45rem 0.6rem;
+      border-radius: 0.75rem;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(51, 65, 85, 0.9);
+    }
+
+    .codex-label {
+      font-family: var(--mono);
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .codex-value {
+      font-weight: 500;
+      text-align: right;
+      color: var(--text);
+    }
+
+    section {
+      margin-top: 2.5rem;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 44rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .codex-grid {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .entry {
+      background: var(--card);
+      border-radius: 1.25rem;
+      border: 1px solid var(--border);
+      padding: 1.1rem 1.1rem 1.25rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .entry-tag {
+      display: inline-flex;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .entry h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .entry-meta {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .entry p {
+      font-size: 0.92rem;
+      color: #e5e7eb;
+      margin-bottom: 0.65rem;
+    }
+
+    .entry-list {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .entry-list li {
+      display: flex;
+      gap: 0.45rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .entry-list li::before {
+      content: "▹";
+      font-family: var(--mono);
+      color: var(--accent);
+      font-size: 0.8rem;
+      margin-top: 0.15rem;
+    }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.1rem;
+      margin-top: 0.5rem;
+    }
+
+    .benefit-card {
+      background: linear-gradient(
+        135deg,
+        var(--card),
+        rgba(15, 23, 42, 0.98)
+      );
+      border-radius: 1.1rem;
+      border: 1px solid var(--border);
+      padding: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefit-icon {
+      font-size: 1.3rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .benefit-card h4 {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .benefit-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* Timeline */
+    .timeline {
+      border-left: 2px solid rgba(148, 163, 184, 0.6);
+      margin-top: 1.2rem;
+      padding-left: 1.1rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1rem;
+      padding-left: 0.2rem;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.23rem;
+      top: 0.3rem;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(74, 222, 128, 0.8);
+    }
+
+    .timeline-year {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .timeline-title {
+      font-size: 0.95rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .timeline-text {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* Voices & audio */
+    .voices-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .voice-card {
+      background: var(--card);
+      border-radius: 1.1rem;
+      border: 1px solid var(--border);
+      padding: 0.9rem 1rem 1.1rem;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
+    }
+
+    .voice-tag {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .voice-title {
+      font-size: 0.98rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .voice-meta {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.45rem;
+    }
+
+    .voice-desc {
+      font-size: 0.86rem;
+      color: #e5e7eb;
+      margin-bottom: 0.3rem;
+    }
+
+    .voice-link {
+      font-size: 0.8rem;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 0.4rem;
+    }
+
+    /* Primary source codex */
+    .source-section {
+      margin-top: 2rem;
+    }
+
+    .source-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.25rem;
+      margin-top: 0.75rem;
+    }
+
+    .source-column {
+      background: var(--bg-alt);
+      border-radius: 1.1rem;
+      border: 1px solid var(--border);
+      padding: 0.9rem 1rem 1.1rem;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
+    }
+
+    .source-column h3 {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .source-column small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .source-list {
+      list-style: none;
+      font-size: 0.86rem;
+      max-height: 420px;
+      overflow-y: auto;
+      padding-right: 0.25rem;
+    }
+
+    .source-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    .source-note {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 3rem;
+      border-top: 1px solid rgba(30, 64, 175, 0.8);
+      padding-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    footer span {
+      font-family: var(--mono);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (max-width: 768px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-right {
+        order: -1;
+      }
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      header {
+        background: rgba(2, 6, 23, 0.98);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <span>Environmental Reform Codex</span>
+      </div>
+      <nav>
+        <a href="#revolution">Revolution</a>
+        <a href="#reaction">Reaction</a>
+        <a href="#reform">Reform</a>
+        <a href="#today">Impact</a>
+        <a href="#thesis">Thesis</a>
+        <a href="#voices">Voices</a>
+        <a href="#sources">Sources</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page">
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div class="hero-grid">
+          <div>
+            <div class="pill">
+              <span class="pill-dot"></span>
+              NHD 2026 • Revolution · Reaction · Reform
+            </div>
+            <h1>
+              From <span>Silent Spring</span> to the <span>EPA</span>:
+              Environmental Revolution, Reaction &amp; Reform
+            </h1>
+            <p class="hero-subtitle">
+              How a scientific warning sparked a public revolution, triggered
+              fierce reaction from industry and government, and led to reforms
+              that still shape the air we breathe, the water we drink, and the
+              world we inherit today.
+            </p>
+            <div class="hero-badges">
+              <div class="badge">1962–1973 Environmental Awakening</div>
+              <div class="badge">Rachel Carson · Earth Day · EPA</div>
+              <div class="badge">Clean Air Act · Clean Water Act · ESA</div>
+            </div>
+          </div>
+
+          <aside class="hero-right">
+            <div class="hero-right-title">Topic Snapshot</div>
+            <div class="codex-list">
+              <div class="codex-row">
+                <div class="codex-label">Theme Link</div>
+                <div class="codex-value">
+                  Revolution → Reaction → Reform
+                </div>
+              </div>
+              <div class="codex-row">
+                <div class="codex-label">Revolution</div>
+                <div class="codex-value">
+                  Silent Spring, Cuyahoga River fire, First Earth Day
+                </div>
+              </div>
+              <div class="codex-row">
+                <div class="codex-label">Reaction</div>
+                <div class="codex-value">
+                  Industry backlash, political debate, citizen protest
+                </div>
+              </div>
+              <div class="codex-row">
+                <div class="codex-label">Reform</div>
+                <div class="codex-value">
+                  EPA, Clean Air &amp; Water Acts, Endangered Species Act
+                </div>
+              </div>
+              <div class="codex-row">
+                <div class="codex-label">Impact Today</div>
+                <div class="codex-value">
+                  Public health, climate policy, legal tools &amp; activism
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- THESIS & ARGUMENT -->
+      <section id="thesis">
+        <div class="section-label">000 • Thesis &amp; Argument</div>
+        <h2 class="section-title">
+          How My Topic Fits “Revolution, Reaction, Reform in History”
+        </h2>
+        <p class="section-intro">
+          This section explains my main argument for National History Day and
+          shows how the environmental movement connects all three theme words.
+          It also lays out the guiding questions I used to structure my
+          research and website.
+        </p>
+
+        <div class="codex-grid">
+          <article class="entry">
+            <div class="entry-tag">Thesis</div>
+            <h3>Working Thesis Statement</h3>
+            <div class="entry-meta">NHD 2026 • Draft Thesis</div>
+            <p>
+              In the 1960s and early 1970s, a revolution in environmental
+              awareness—driven by scientists, activists, and visible pollution
+              disasters—sparked intense reaction from industry and political
+              leaders but ultimately produced a series of landmark reforms,
+              including the creation of the Environmental Protection Agency and
+              the passage of the Clean Air, Clean Water, and Endangered Species
+              Acts. These reforms transformed how the United States treats air,
+              water, and wildlife and still shape public health and climate
+              policy today.
+            </p>
+            <ul class="entry-list">
+              <li><strong>Revolution:</strong> New ideas about ecology and human
+                responsibility challenged “business as usual.”</li>
+              <li><strong>Reaction:</strong> Companies, politicians, and
+                communities battled over how far change should go.</li>
+              <li><strong>Reform:</strong> Laws and a new federal agency created
+                a lasting system of environmental protection.</li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry-tag">Historical Significance</div>
+            <h3>Why This Turning Point Matters</h3>
+            <div class="entry-meta">So What? • Long-Term Impact</div>
+            <p>
+              Before this era, pollution was widely accepted as the price of
+              economic progress. After it, many Americans came to see clean air
+              and water as basic rights. The environmental reforms of the early
+              1970s did not solve every problem, but they created tools—like
+              national standards and citizen lawsuits—that people still use to
+              fight new threats such as climate change and environmental
+              injustice.
+            </p>
+            <ul class="entry-list">
+              <li>Changes daily life (what comes from our taps and what is in our air).</li>
+              <li>Changes power (citizens can challenge polluters using the law).</li>
+              <li>Changes debates (new controversies about how strong environmental rules should be).</li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry-tag">Guiding Questions</div>
+            <h3>Questions That Guided My Research</h3>
+            <div class="entry-meta">Research Design · NHD Skills</div>
+            <p>
+              To build this project, I focused my reading and note-taking
+              around a few key questions. These questions helped me select
+              primary sources and decide which stories best show revolution,
+              reaction, and reform at work.
+            </p>
+            <ul class="entry-list">
+              <li>How did scientists and citizens convince people that pollution
+                was a crisis, not just a nuisance?</li>
+              <li>What arguments did industries and some politicians use to
+                resist environmental regulation?</li>
+              <li>How did conflicts between different groups lead to specific
+                reforms like the EPA and environmental laws?</li>
+              <li>In what ways do these reforms still affect people and debates
+                about the environment today?</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- REVOLUTION -->
+      <section id="revolution">
+        <div class="section-label">001 • Revolution</div>
+        <h2 class="section-title">
+          Environmental Awakening: Seeing Pollution as a Crisis
+        </h2>
+        <p class="section-intro">
+          In the 1950s and early 1960s, many Americans saw pollution as the
+          “price of progress.” Rivers carried factory waste, pesticides were
+          advertised as miracle chemicals, and thick city smog was treated as
+          normal. A revolution in thinking began when scientists, journalists,
+          and local residents started calling this damage a threat to life
+          itself. This intellectual and moral shift is the “revolution” at the
+          heart of my topic.
+        </p>
+
+        <div class="codex-grid">
+          <article class="entry">
+            <div class="entry-tag">Silent Spring</div>
+            <h3>Rachel Carson’s Warning (1962)</h3>
+            <div class="entry-meta">Book · Scientific Critique</div>
+            <p>
+              In <em>Silent Spring</em>, marine biologist Rachel Carson showed
+              how pesticides like DDT were building up in the food chain,
+              thinning bird eggshells, and threatening human health. She argued
+              that humans were altering entire ecosystems without understanding
+              the consequences. Her book took complex scientific data and
+              turned it into a gripping story that ordinary readers could
+              understand.
+            </p>
+            <ul class="entry-list">
+              <li>Challenged the idea that chemicals were always safe “miracles.”</li>
+              <li>Introduced the concept of ecology—everything in nature is connected.</li>
+              <li>Helped inspire investigations, TV programs, and public debate.</li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry-tag">Visible Disaster</div>
+            <h3>Cuyahoga River Fire (1969)</h3>
+            <div class="entry-meta">Photos · News · Local Accounts</div>
+            <p>
+              On June 22, 1969, a polluted stretch of the Cuyahoga River in
+              Cleveland, Ohio, caught fire when an oil slick on the surface
+              ignited. It was not the first time the river had burned, but this
+              fire happened at a moment when the national media were already
+              paying attention to environmental problems. Pictures and
+              descriptions of a burning river shocked the public and turned
+              local pollution into a national symbol of crisis.
+            </p>
+            <ul class="entry-list">
+              <li>Showed how extreme water pollution had become in industrial cities.</li>
+              <li>Encouraged mayors and local leaders to demand federal help.</li>
+              <li>Helped build support for strong national water laws.</li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry-tag">Mass Mobilization</div>
+            <h3>First Earth Day (1970)</h3>
+            <div class="entry-meta">Teach-ins · Protests · Youth Activism</div>
+            <p>
+              On April 22, 1970, about 20 million Americans participated in the
+              first Earth Day. Organizers called it a “national teach-in” on
+              the environment. Students marched in the streets, teachers held
+              lessons outdoors, and communities cleaned up rivers and parks.
+              Earth Day turned scattered concerns into a coordinated national
+              movement and showed politicians that millions of voters cared
+              about environmental reform.
+            </p>
+            <ul class="entry-list">
+              <li>One of the largest public demonstrations in U.S. history.</li>
+              <li>Brought together college students, parents, scientists, and religious groups.</li>
+              <li>Sent a clear message to lawmakers: environmental protection had political power.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">1950s–early 1960s</div>
+            <div class="timeline-title">Growing but scattered concern</div>
+            <div class="timeline-text">
+              Local communities worry about smog, pesticides, and polluted
+              rivers, but there is no unified national movement yet.
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1962</div>
+            <div class="timeline-title"><em>Silent Spring</em> published</div>
+            <div class="timeline-text">
+              Carson’s book reaches a wide audience and forces the public to
+              connect everyday pollution with long-term ecological damage.
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1969</div>
+            <div class="timeline-title">Cuyahoga River fire</div>
+            <div class="timeline-text">
+              The burning river becomes a powerful image of environmental crisis
+              and a symbol of the need for national action.
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1970</div>
+            <div class="timeline-title">First Earth Day</div>
+            <div class="timeline-text">
+              Millions join events across the country, proving that the
+              environmental revolution has moved from books and scientists into
+              mainstream public life.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REACTION -->
+      <section id="reaction">
+        <div class="section-label">002 • Reaction</div>
+        <h2 class="section-title">
+          Backlash &amp; Debate: Industry, Politics, and Public Pressure
+        </h2>
+        <p class="section-intro">
+          The environmental revolution did not go unchallenged. Chemical
+          companies, trade associations, and some politicians argued that
+          strict environmental rules would destroy jobs, weaken the economy,
+          and give the federal government too much power. At the same time,
+          mayors, local activists, and health experts demanded strong action.
+          This conflict between different reactions shaped what reforms were
+          possible—and what kind of environmental system the United States
+          would build.
+        </p>
+
+        <div class="codex-grid">
+          <article class="entry">
+            <div class="entry-tag">Industry Response</div>
+            <h3>Attacks on Scientists &amp; Environmentalists</h3>
+            <div class="entry-meta">Corporate PR · Opinion Pieces</div>
+            <p>
+              Some chemical companies and their allies launched public
+              relations campaigns to discredit Rachel Carson and other
+              environmental advocates. They accused them of being emotional,
+              anti-technology, or even anti-business. Ads and statements from
+              this period show how industry tried to reassure the public that
+              pesticides and industrial chemistry were under control.
+            </p>
+            <ul class="entry-list">
+              <li>Shows how powerful groups tried to control the narrative.</li>
+              <li>Reveals early versions of arguments still used in debates over regulation today.</li>
+              <li>Helps explain why passing strong environmental laws required so much public pressure.</li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry-tag">Politics</div>
+            <h3>Presidential &amp; Congressional Debate</h3>
+            <div class="entry-meta">Messages to Congress · Hearings</div>
+            <p>
+              As public concern grew, U.S. presidents and members of Congress
+              had to respond. Presidential messages on environmental quality
+              admitted that air and water pollution were serious problems, but
+              also warned about the costs of change. Congressional hearings
+              brought together scientists, industry lobbyists, and community
+              members to argue over how strict new laws should be.
+            </p>
+            <ul class="entry-list">
+              <li>Shows the federal government slowly shifting from denial to action.</li>
+              <li>Documents specific disagreements over technology, costs, and federal power.</li>
+              <li>Creates the political context in which the EPA and major laws were finally passed.</li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry-tag">Local Voices</div>
+            <h3>Communities on the Front Lines</h3>
+            <div class="entry-meta">Oral Histories · Local Records</div>
+            <p>
+              While national leaders debated, local communities experienced the
+              effects of pollution directly: children with asthma, rivers that
+              smelled like chemicals, and neighborhoods next to toxic dumps.
+              Mayors and residents spoke out, connecting environmental damage
+              to issues like poverty, race, and public health.
+            </p>
+            <ul class="entry-list">
+              <li>Environmental problems were often worst in working-class and minority communities.</li>
+              <li>Local protests and lawsuits made pollution a moral and civil rights issue.</li>
+              <li>These voices helped push national leaders toward stronger reforms.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- REFORM -->
+      <section id="reform">
+        <div class="section-label">003 • Reform</div>
+        <h2 class="section-title">
+          Building a New System: EPA and Landmark Environmental Laws
+        </h2>
+        <p class="section-intro">
+          Under pressure from voters, scientists, and local leaders, the United
+          States rewrote the rules. Between 1970 and 1973, it created a new
+          federal agency—the Environmental Protection Agency—and passed a wave
+          of laws that still structure environmental protection today. This is
+          the “reform” stage of the story: the moment when ideas and conflicts
+          were transformed into concrete institutions and policies.
+        </p>
+
+        <div class="codex-grid">
+          <article class="entry">
+            <div class="entry-tag">Institution</div>
+            <h3>The Creation of the EPA (1970)</h3>
+            <div class="entry-meta">Reorganization Plan No. 3 · Executive Actions</div>
+            <p>
+              Before 1970, responsibility for environmental problems was spread
+              across many agencies. The Environmental Protection Agency (EPA)
+              was created to bring these responsibilities together. The EPA was
+              given the job of studying environmental problems, setting
+              standards, and enforcing federal laws.
+            </p>
+            <ul class="entry-list">
+              <li>Centralized authority over air, water, pesticides, and waste.</li>
+              <li>Allowed for national rules instead of a patchwork of local responses.</li>
+              <li>Provided the institutional base for later climate and pollution policies.</li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry-tag">Law</div>
+            <h3>Clean Air Act (1970) &amp; Clean Water Act (1972)</h3>
+            <div class="entry-meta">Federal Statutes · Regulations</div>
+            <p>
+              The Clean Air Act set national limits on air pollution and
+              required states and industries to meet them. It also led to
+              innovations like catalytic converters in cars and the phase-out
+              of leaded gasoline. The Clean Water Act aimed to restore and
+              maintain the “chemical, physical, and biological integrity” of
+              the nation’s waters, pushing cities and industries to treat
+              wastewater before releasing it.
+            </p>
+            <ul class="entry-list">
+              <li>Turned clean air and water into enforceable legal goals.</li>
+              <li>Forced investments in new technologies to control pollution.</li>
+              <li>Gave citizens and groups legal standing to sue polluters.</li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry-tag">Biodiversity</div>
+            <h3>Endangered Species Act (1973)</h3>
+            <div class="entry-meta">Public Law 93-205 · 16 U.S.C. ch. 35</div>
+            <p>
+              The Endangered Species Act (ESA) committed the U.S. government to
+              prevent species from going extinct. It required the listing of
+              threatened species, the protection of their habitats, and the
+              review of major projects that might harm them. The ESA changed
+              the way the country thought about wildlife—from something to
+              exploit to something to protect.
+            </p>
+            <ul class="entry-list">
+              <li>Helped bald eagles, peregrine falcons, and other species recover.</li>
+              <li>Influenced decisions about dams, highways, and land use.</li>
+              <li>Linked environmental policy to long-term ecological health.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">1970</div>
+            <div class="timeline-title">EPA established</div>
+            <div class="timeline-text">
+              The Environmental Protection Agency begins operations as the
+              central federal agency for environmental protection.
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1970</div>
+            <div class="timeline-title">Clean Air Act amendments</div>
+            <div class="timeline-text">
+              Strengthen earlier laws and give EPA broad authority to regulate
+              air pollution from factories, cars, and power plants.
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1972</div>
+            <div class="timeline-title">Clean Water Act</div>
+            <div class="timeline-text">
+              Sets ambitious goals for eliminating discharges of pollutants into
+              navigable waters and funds sewage treatment upgrades.
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1973</div>
+            <div class="timeline-title">Endangered Species Act</div>
+            <div class="timeline-text">
+              Protects species at risk of extinction and the ecosystems they
+              depend on, reshaping debates over land and resource use.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- IMPACT TODAY -->
+      <section id="today">
+        <div class="section-label">004 • Impact Today</div>
+        <h2 class="section-title">
+          Living Inside the Reform: Benefits and Ongoing Battles
+        </h2>
+        <p class="section-intro">
+          The environmental reforms of the 1970s are not just “back then.”
+          They still shape daily life in the United States. Every time we turn
+          on the tap, check an air quality alert, or hear about a court case
+          involving pollution or climate change, we are seeing the legacy of
+          this era. At the same time, debates over how far environmental rules
+          should go continue, showing that reform is an ongoing process.
+        </p>
+
+        <div class="benefit-grid">
+          <article class="benefit-card">
+            <div class="benefit-icon">🌬️</div>
+            <h4>Cleaner Air &amp; Healthier Lungs</h4>
+            <p>
+              Since the Clean Air Act, levels of major air pollutants have
+              dropped significantly in many U.S. cities, even as the population
+              and economy have grown. This means fewer asthma attacks,
+              respiratory illnesses, and early deaths, especially for children
+              and older adults.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon">💧</div>
+            <h4>Rivers Reborn &amp; Safer Drinking Water</h4>
+            <p>
+              Many rivers and lakes that were once too polluted for fish or
+              recreation now support wildlife and are used for boating, fishing,
+              and even drinking water. Modern wastewater treatment plants and
+              discharge permits trace back to Clean Water Act requirements.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon">🦅</div>
+            <h4>Wildlife Recovery</h4>
+            <p>
+              Bald eagles, gray wolves, brown pelicans, and other animals have
+              made major comebacks thanks to the Endangered Species Act,
+              pesticide limits, and habitat protection. These success stories
+              show how laws can reverse environmental damage.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon">⚖️</div>
+            <h4>Legal Tools for Communities</h4>
+            <p>
+              Environmental laws give citizens, tribes, and organizations the
+              right to sue polluters and challenge government decisions. This
+              has become a key part of environmental justice movements that
+              focus on communities that have been hit hardest by pollution.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon">🔧</div>
+            <h4>Innovation &amp; Green Technology</h4>
+            <p>
+              Requirements to reduce emissions pushed companies to develop
+              cleaner engines, smokestack scrubbers, and new methods for
+              controlling waste. Many modern green technologies grew out of
+              efforts to comply with environmental regulations.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon">🌍</div>
+            <h4>Framework for Climate Action</h4>
+            <p>
+              Today, many climate policies—including rules for power plants and
+              vehicle emissions—use authority originally created for air
+              pollution and environmental protection. The same tools built for
+              smog and toxic waste are now being used to address global warming.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- VOICES & PUBLIC OPINION -->
+      <section id="voices">
+        <div class="section-label">005 • Voices &amp; Public Opinion</div>
+        <h2 class="section-title">
+          How People Spoke, Argued, and Remembered the Environmental Turn
+        </h2>
+        <p class="section-intro">
+          These examples show how different people experienced the environmental
+          revolution, reaction, and reform. You can add real MP3 files or links
+          from archives into the players and buttons below. During your NHD
+          presentation, you can point to this section to show how you used
+          primary sources like speeches, broadcasts, and oral histories.
+        </p>
+
+        <div class="voices-grid">
+          <article class="voice-card">
+            <div class="voice-tag">Audio • President</div>
+            <div class="voice-title">Presidential Message on Environmental Quality</div>
+            <div class="voice-meta">Example: 1970 Message to Congress</div>
+            <p class="voice-desc">
+              A U.S. president addresses Congress about air and water pollution,
+              acknowledging the problem while also worrying about economic
+              trade-offs. This represents the official political reaction to
+              the environmental revolution.
+            </p>
+            <!-- Replace "president-speech.mp3" with your actual file path -->
+            <audio controls src="president-speech.mp3">
+              Your browser does not support the audio element.
+            </audio>
+            <p class="voice-desc" style="margin-top:0.3rem;">
+              <strong>How it fits the theme:</strong> shows how national leaders
+              reacted to public pressure and helped shape reform.
+            </p>
+          </article>
+
+          <article class="voice-card">
+            <div class="voice-tag">Audio • Activist</div>
+            <div class="voice-title">Student Earth Day Organizer</div>
+            <div class="voice-meta">Example Oral History Clip</div>
+            <p class="voice-desc">
+              A student remembers planning Earth Day events on campus—making
+              posters, organizing teach-ins, and confronting skeptical adults.
+              Their story highlights youth activism as part of the revolution.
+            </p>
+            <!-- Replace with your own MP3 -->
+            <audio controls src="student-earthday.mp3">
+              Your browser does not support the audio element.
+            </audio>
+            <p class="voice-desc" style="margin-top:0.3rem;">
+              <strong>How it fits the theme:</strong> shows ordinary people
+              turning scientific warnings into public protest.
+            </p>
+          </article>
+
+          <article class="voice-card">
+            <div class="voice-tag">Audio • Community</div>
+            <div class="voice-title">Resident Near a Polluted River</div>
+            <div class="voice-meta">Local Oral History</div>
+            <p class="voice-desc">
+              A community member describes living near a polluted river—smells,
+              health concerns, and how the neighborhood changed after cleanup
+              began. This is a personal window into both the damage and the
+              benefits of reform.
+            </p>
+            <!-- Replace with your own MP3 -->
+            <audio controls src="river-resident.mp3">
+              Your browser does not support the audio element.
+            </audio>
+            <p class="voice-desc" style="margin-top:0.3rem;">
+              <strong>How it fits the theme:</strong> connects laws and
+              policies to real human experiences.
+            </p>
+          </article>
+
+          <article class="voice-card">
+            <div class="voice-tag">Debate</div>
+            <div class="voice-title">Industry Representative vs. Environmental Advocate</div>
+            <div class="voice-meta">Excerpt from a Public Forum or Hearing</div>
+            <p class="voice-desc">
+              A recording of a public debate where a company spokesperson argues
+              that new regulations will cost jobs, while an environmental
+              advocate argues that the cost of inaction is higher. This audio
+              clip represents the heart of the “reaction” stage.
+            </p>
+            <!-- Replace with your own MP3 -->
+            <audio controls src="industry-vs-environment.mp3">
+              Your browser does not support the audio element.
+            </audio>
+            <p class="voice-desc" style="margin-top:0.3rem;">
+              <strong>How it fits the theme:</strong> illustrates the clash of
+              interests that shaped the final form of reform.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- PRIMARY SOURCE CODEX -->
+      <section id="sources" class="source-section" aria-labelledby="sources-title">
+        <div class="section-label">006 • Primary Source Codex</div>
+        <h2 class="section-title" id="sources-title">
+          Primary Sources for Revolution, Reaction &amp; Reform
+        </h2>
+        <p class="section-intro">
+          This codex groups primary and archival sources that support my
+          argument. In an actual project, each item would be cited in my
+          annotated bibliography. I can continue adding sources until I reach
+          the number required for my category, but this layout already shows
+          how the sources support different parts of the theme.
+        </p>
+
+        <div class="source-columns">
+          <!-- REVOLUTION SOURCES -->
+          <div class="source-column">
+            <h3>Revolution: Warnings &amp; Awakening</h3>
+            <small>Scientific texts · early protests · visible crises</small>
+            <ul class="source-list">
+              <li>
+                <strong>Rachel Carson, <em>Silent Spring</em> (1962)</strong><br />
+                <span class="source-note">
+                  Book that exposed the dangers of pesticides and tied them to
+                  ecological damage and human health. Supports the “revolution
+                  in ideas” part of my argument.
+                </span>
+              </li>
+              <li>
+                <strong>“The Obligation to Endure” – chapter from <em>Silent Spring</em></strong><br />
+                <span class="source-note">
+                  Key chapter summarizing why human beings must take
+                  responsibility for chemical pollution, useful for pulling
+                  short quotes.
+                </span>
+              </li>
+              <li>
+                <strong>Photographs and reports of the Cuyahoga River fire (1969)</strong><br />
+                <span class="source-note">
+                  News coverage and images of the burning river that showed
+                  how extreme water pollution had become and helped spark
+                  national outrage.
+                </span>
+              </li>
+              <li>
+                <strong>Original Earth Day posters and flyers (1970)</strong><br />
+                <span class="source-note">
+                  Visual sources that reveal what issues organizers highlighted
+                  and how they framed the “environmental crisis” to the public.
+                </span>
+              </li>
+              <li>
+                <strong>Eyewitness accounts of smog in major U.S. cities</strong><br />
+                <span class="source-note">
+                  Interviews and oral histories from residents of heavily
+                  polluted cities, showing daily life during the pre-reform era.
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- REACTION SOURCES -->
+          <div class="source-column">
+            <h3>Reaction: Backlash, Debate &amp; Media</h3>
+            <small>Industry responses · political speeches · news</small>
+            <ul class="source-list">
+              <li>
+                <strong>Editorials criticizing <em>Silent Spring</em></strong><br />
+                <span class="source-note">
+                  Opinion pieces and reviews that attacked Carson and defended
+                  pesticide use, revealing industry and media backlash.
+                </span>
+              </li>
+              <li>
+                <strong>Statements from chemical companies and trade groups</strong><br />
+                <span class="source-note">
+                  Corporate press releases claiming that pesticides were safe
+                  and that environmentalists were overreacting.
+                </span>
+              </li>
+              <li>
+                <strong>Presidential “Messages on Environmental Quality”</strong><br />
+                <span class="source-note">
+                  Speeches to Congress that both acknowledge environmental
+                  problems and stress the need to protect economic growth.
+                </span>
+              </li>
+              <li>
+                <strong>Congressional hearing transcripts on pollution</strong><br />
+                <span class="source-note">
+                  Includes testimony by scientists, industry lobbyists, and
+                  citizens, showing multiple sides of the argument.
+                </span>
+              </li>
+              <li>
+                <strong>Local newspaper coverage of protests and teach-ins</strong><br />
+                <span class="source-note">
+                  Articles about Earth Day events, river cleanups, and local
+                  activism that put pressure on representatives.
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- REFORM SOURCES -->
+          <div class="source-column">
+            <h3>Reform: Laws, Agencies &amp; Implementation</h3>
+            <small>Statutes · legal texts · agency records</small>
+            <ul class="source-list">
+              <li>
+                <strong>Text of the Clean Air Act (1970)</strong><br />
+                <span class="source-note">
+                  Primary legal document defining national air quality standards
+                  and EPA authority; I can quote key phrases about goals and
+                  enforcement.
+                </span>
+              </li>
+              <li>
+                <strong>Text of the Clean Water Act (1972)</strong><br />
+                <span class="source-note">
+                  Law establishing federal control over discharges to U.S.
+                  waters; useful for showing how policy changed after river
+                  disasters.
+                </span>
+              </li>
+              <li>
+                <strong>Text of the Endangered Species Act (1973)</strong><br />
+                <span class="source-note">
+                  Statute that protects threatened species and habitats,
+                  demonstrating how reform extended beyond pollution to
+                  biodiversity.
+                </span>
+              </li>
+              <li>
+                <strong>EPA founding documents and organizational charts</strong><br />
+                <span class="source-note">
+                  Show how responsibilities were reorganized under the new
+                  agency and how the federal role expanded.
+                </span>
+              </li>
+              <li>
+                <strong>Early EPA enforcement case files or press releases</strong><br />
+                <span class="source-note">
+                  Evidence of how the new laws were actually applied to real
+                  companies and cities.
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- IMPACT & DATA SOURCES -->
+          <div class="source-column">
+            <h3>Impact &amp; Long-Term Reflection</h3>
+            <small>Data · before/after photos · modern analysis</small>
+            <ul class="source-list">
+              <li>
+                <strong>EPA reports on trends in air pollution and health</strong><br />
+                <span class="source-note">
+                  Charts and statistics that show declines in major pollutants
+                  and estimated health benefits.
+                </span>
+              </li>
+              <li>
+                <strong>“Before and after” photographs from polluted sites</strong><br />
+                <span class="source-note">
+                  Images from the early 1970s compared with more recent
+                  photographs to visualize changes in air and water quality.
+                </span>
+              </li>
+              <li>
+                <strong>Case studies of species recovery under the ESA</strong><br />
+                <span class="source-note">
+                  Government or scientific reports describing how specific
+                  endangered species were brought back from the brink.
+                </span>
+              </li>
+              <li>
+                <strong>Modern articles reflecting on the Clean Air and Water Acts</strong><br />
+                <span class="source-note">
+                  Analyses written decades later that ask whether these laws
+                  succeeded and what challenges remain.
+                </span>
+              </li>
+              <li>
+                <strong>Recent court cases involving EPA authority</strong><br />
+                <span class="source-note">
+                  Show how the meaning and reach of environmental reforms are
+                  still being contested in the 21st century.
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="section-intro" style="margin-top:1.5rem;">
+          Together, these sources show the full chain:
+          <strong>Revolution</strong> happens when scientific warnings and
+          visible disasters change how people think; <strong>Reaction</strong>
+          includes both backlash and new demands from the public; and
+          <strong>Reform</strong> is the creation of laws and institutions that
+          we still live under today. My National History Day project argues
+          that this environmental turning point matters because it not only
+          changed the past, but also created the tools and debates we still use
+          to decide how to protect the planet in the future.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <span>NHD 2026 • Revolution · Reaction · Reform in History</span>
+      <span>Case Study: U.S. Environmental Movement &amp; Environmental Reform</span>
+    </footer>
+  </div>
+</body>
+</html>
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
